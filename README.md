@@ -1,9 +1,13 @@
 # test_contact-form
 
+# お問い合わせフォーム(確認テスト用) このREADMEは環境構築のため原田侑佳が準備したものです。
+
+
 ## 環境構築
 ### Dockerビルド
-- git clone git@github.com:yukit4mu/test_contact-form.git
+- git@github.com:yuka-ppp/test_contact-form.git
 - docker-compose up -d --build
+
 ### Laravel環境構築
 - docker-compose exec php bash
 - composer install
@@ -11,6 +15,15 @@
 - php artisan key:generate
 - php artisan migrate
 - php artisan db:seed
+
+## .env設定
+- DB_CONNECTION=mysql
+- DB_HOST=mysql
+- DB_PORT=3306
+- DB_DATABASE=laravel_db
+- DB_USERNAME=laravel_user
+- DB_PASSWORD=laravel_pass
+
 
 ## 開発環境
   - お問い合わせ画面：http://localhost/  
@@ -24,40 +37,7 @@
 - MySQL 8.0.26
 - nginx 1.21.1
 
-## ER図
-```mermaid
-erDiagram
+## ER図(画像リンクあり)
 
-  categories ||--o{ contacts: "relation"
+![ER図](./images/test_contact_form.png)
 
-  contacts {
-    bigint id PK
-    bigint categry_id FK
-    varchar first_name "NOT NULL"
-    varchar last_name "NOT NULL"
-    tinyint gender "NOT NULL"
-    varchar email "NOT NULL"
-    varchar tell "NOT NULL"
-    varchar address "NOT NULL"
-    varchar building
-    text detail "NOT NULL"
-    timestamp created_at
-    timestamp deleted_at
-  }
-
-   categories{
-    bigint id PK
-    varchar content "NOT NULL"
-    timestamp created_at
-    timestamp deleted_at
-  }
-
-  users {
-    bigint id PK
-    varchar name "NOT NULL"
-    varchar email "NOT NULL"
-    varchar password "NOT NULL"
-    timestamp created_at
-    timestamp deleted_at
-  }
-```
